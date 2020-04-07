@@ -30,6 +30,6 @@
     "homepage": "https://github.com/odrick/webpack-free-tex-packer#readme",
     "dependencies": {
         "chokidar": "^2.0.4",
-        "free-tex-packer-core": "https://github.com/miltoncandelero/free-tex-packer-core",
+        "free-tex-packer-core": "https://github.com/miltoncandelero/free-tex-packer-core"
     }
 }
