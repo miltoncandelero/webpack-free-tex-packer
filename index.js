@@ -83,11 +83,12 @@ class WebpackFreeTexPacker {
         this.onFsChanges = this.onFsChanges.bind(this);
     }
 
-    addDependencie(dependencies, path) {
+    addDependencie(dependencies, path, watch) {
         if(Array.isArray(dependencies)) dependencies.push(path);
         else dependencies.add(path);
-
-        this.addToWatch(path);
+        if (watch){
+            this.addToWatch(path);
+        }
     }
 
     addToWatch(path) {
@@ -138,11 +139,11 @@ class WebpackFreeTexPacker {
                         }
                     }
 
-                    this.addDependencie(compilation.contextDependencies, srcPath);
+                    this.addDependencie(compilation.contextDependencies, srcPath,compilation.options.watch);
 
                     let subFolders = getSubFoldersList(srcPath);
                     for(let folder of subFolders) {
-                        this.addDependencie(compilation.contextDependencies, folder);
+                        this.addDependencie(compilation.contextDependencies, folder,compilation.options.watch);
                     }
                 }
                 else {
@@ -150,7 +151,7 @@ class WebpackFreeTexPacker {
                         files[getNameFromPath(path)] = path;
                     }
 
-                    this.addDependencie(compilation.fileDependencies, srcPath);
+                    this.addDependencie(compilation.fileDependencies, srcPath,compilation.options.watch);
                 }
             }
         }
